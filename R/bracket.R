@@ -1,12 +1,23 @@
+#' Create tournament
+#'
+#' @param tab
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' library(bracketr)
+#' create_tournament(worldcup)
+#'
 create_tournament <- function(tab) {
-  rounds <- unique(tab$round)
+  rounds <- sort(unique(tab$round))
   htmltools::div(
     class = "bracket",
     purrr::map(
       rounds,
       ~ tab %>%
         dplyr::filter(round == .x) %>%
-        create_round()
+        create_round(.x)
     )
   )
 }
@@ -67,7 +78,7 @@ create_bracket <- function(tab) {
           class = "participant",
           tab$participant2
         )
-      ),
+      )
     )
   )
 }

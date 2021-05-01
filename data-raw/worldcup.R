@@ -20,14 +20,20 @@ worldcup <- tibble::tribble(
   99, "Brazil", "0", "Netherlands", "3",
 )
 
-View(dplyr::mutate(
+worldcup <- dplyr::mutate(
   worldcup,
   badge1 = purrr::map_chr(
-    participant1,
+    stringr::str_replace_all(participant1, " ", "_"),
+    ~glue::glue(
+      "https://raw.githubusercontent.com/williamorim/bracketr/master/inst/flags/{.x}.png"
+    )
+  ),
+  badge2 = purrr::map_chr(
+    stringr::str_replace_all(participant2, " ", "_"),
     ~glue::glue(
       "https://raw.githubusercontent.com/williamorim/bracketr/master/inst/flags/{.x}.png"
     )
   )
-))
+)
 
 usethis::use_data(worldcup, overwrite = TRUE)

@@ -11,3 +11,8 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/williamorim/bracketr
 BugReports: https://github.com/williamorim/bracketr/issues
+Depends: 
+    R (>= 2.10)
+RoxygenNote: 7.1.1
+Imports: 
+    magrittr
